@@ -2,9 +2,11 @@ import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_core/utils.dart';
 import 'package:http/http.dart' as http;
+import 'package:mqtt_client/mqtt_client.dart' as mqtt;
 
-void main() => runApp(const MyApp());
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -16,8 +18,8 @@ class MyApp extends StatelessWidget {
     var width = physicalScreenSize.width;
     var height = physicalScreenSize.height;
 
-    print('device width :$width');
-    print('device height :$height');
+    Utils.printLog('device width :$width');
+    Utils.printLog('device height :$height');
 
     return MaterialApp(
       home: Scaffold(
@@ -30,6 +32,9 @@ class MyApp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const SizedBox(
+                height: 20,
+              ),
               ElevatedButton(
                 onPressed: () {
                   postService();
@@ -44,7 +49,7 @@ class MyApp extends StatelessWidget {
   }
 
   Future<void> getService() async {
-    print('hitService Clicked!');
+    Utils.printLog('hitService Clicked!');
     //var url = Uri.https('https://flutter-shop-app-cbef4.firebaseio.com/products.json');
 
     var url =
@@ -52,22 +57,22 @@ class MyApp extends StatelessWidget {
 
     var response = await http.get(url);
     if (response.statusCode == 200) {
-      print('response success : ${response.statusCode}');
-      print('response body : ${response.body}');
+      Utils.printLog('response success : ${response.statusCode}');
+      Utils.printLog('response body : ${response.body}');
     } else {
-      print('response failure : ${response.statusCode}');
+      Utils.printLog('response failure : ${response.statusCode}');
     }
   }
 
   Future<void> postService() async {
-    print('postService Clicked!');
+    Utils.printLog('postService Clicked!');
 
-    var url =
-        Uri.https('gorest.co.in', '/public/v2/users');
+    var url = Uri.https('gorest.co.in', '/public/v2/users');
 
     var response = await http.post(url,
         headers: <String, String>{
-          'Authorization': 'Bearer 43847fc097864ee22bba7dcc4724c2ca8dd910870f8d856257e5954e5e39867a',
+          'Authorization':
+              'Bearer 43847fc097864ee22bba7dcc4724c2ca8dd910870f8d856257e5954e5e39867a',
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(<String, String>{
@@ -78,11 +83,11 @@ class MyApp extends StatelessWidget {
         }));
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print('response success : ${response.statusCode}');
-      print('response body : ${response.body}');
+      Utils.printLog('response success : ${response.statusCode}');
+      Utils.printLog('response body : ${response.body}');
     } else {
-      print('response failure : ${response.statusCode}');
-      print('response failure : ${response.body}');
+      Utils.printLog('response failure : ${response.statusCode}');
+      Utils.printLog('response failure : ${response.body}');
     }
   }
 }

@@ -2,8 +2,10 @@
     package="com.flutter.core.flutter_core">
     
     <uses-permission android:name="android.permission.INTERNET"/>
-    
-   <application
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
+    <application
         android:label="flutter_core"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
