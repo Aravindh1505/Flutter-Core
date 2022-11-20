@@ -6,25 +6,27 @@ import 'package:mqtt_client/mqtt_server_client.dart';
 class MQTTClientManager {
   MqttServerClient client = MqttServerClient.withPort('broker.emqx.io', 'flutter_client_ios', 1883);
   //MqttServerClient client = MqttServerClient.withPort('0f8509cb4d2d4577bb6f193b7019f379.s1.eu.hivemq.cloud', 'clientId-U5yjShoDy0', 8884);
-  // MqttServerClient client = MqttServerClient.withPort('broker.hivemq.com', 'flutter_client', 1883);
+  // MqttServerClient client = MqttServerClient.withPort('broker.hivemq.com', 'ios', 1883);
+
+  // MqttServerClient client = MqttBrowserClient('ws://0f8509cb4d2d4577bb6f193b7019f379.s1.eu.hivemq.cloud', 'flutter') as MqttServerClient;
 
   Future<int> connect() async {
     client.logging(on: true);
-    //client.keepAlivePeriod = 60;
+    client.keepAlivePeriod = 60;
     client.onConnected = onConnected;
     client.onDisconnected = onDisconnected;
     client.onSubscribed = onSubscribed;
     client.pongCallback = pong;
 
-    final connMessage = MqttConnectMessage().startClean().withWillQos(MqttQos.atLeastOnce);
+    //final connMessage = MqttConnectMessage().startClean().withWillQos(MqttQos.atLeastOnce);
 
-  /*  final connMessage = MqttConnectMessage()
+    final connMessage = MqttConnectMessage()
         .authenticateAs('aravindh', '9791779068')
         .keepAliveFor(60)
         .withWillTopic('willtopic')
         .withWillMessage('Will message')
         .startClean()
-        .withWillQos(MqttQos.atLeastOnce);*/
+        .withWillQos(MqttQos.atLeastOnce);
     client.connectionMessage = connMessage;
 
     try {
