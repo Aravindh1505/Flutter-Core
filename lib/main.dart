@@ -4,9 +4,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_core/utils.dart';
 import 'package:http/http.dart' as http;
-import 'package:mqtt_client/mqtt_client.dart' as mqtt;
 
-
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

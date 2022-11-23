@@ -4,9 +4,7 @@ import 'package:mqtt_client/mqtt_client.dart';
 
 import 'mqtt.dart';
 
-void main() => runApp(const MyHomePage(
-      title: 'MQTT',
-    ));
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
