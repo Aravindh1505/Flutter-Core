@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_core/utils.dart';
+import 'package:flutter_core/utils/utils.dart';
 import 'package:http/http.dart' as http;
 
 void main() => runApp(const MyApp());
@@ -62,6 +62,7 @@ class MyApp extends StatelessWidget {
       Utils.printLog('response failure : ${response.statusCode}');
     }
   }
+
 
   Future<void> postService() async {
     Utils.printLog('postService Clicked!');
