@@ -15,9 +15,6 @@ class MyApp extends StatelessWidget {
     var width = physicalScreenSize.width;
     var height = physicalScreenSize.height;
 
-    Utils.printLog('device width :$width');
-    Utils.printLog('device height :$height');
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
