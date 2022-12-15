@@ -1,42 +1,63 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_core/utils/utils.dart';
 
-void main() => runApp(const MyApp());
+// void main() {
+//   runApp(MyApp());
+// }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+void main() => runApp(MyApp());
+
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _MyAppState();
+  }
+}
+
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
+
+  var questions = [
+    'What\'s your favorite color?',
+    'What\'s your favorite animal?',
+    'What\'s your favorite actor?',
+    'What\'s your favorite food?',
+  ];
+
+  void _answerQuestion() {
+    if (questions.length - 1 > _questionIndex) {
+      setState(() {
+        _questionIndex = _questionIndex + 1;
+      });
+    }
+
+    print(_questionIndex);
+  }
 
   @override
   Widget build(BuildContext context) {
-    //Size in physical pixels
-    var physicalScreenSize = window.physicalSize;
-    var width = physicalScreenSize.width;
-    var height = physicalScreenSize.height;
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Smart Illam'),
+          title: const Text('Survey'),
         ),
-        body: Container(
-          width: width,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              ElevatedButton(
-                onPressed: () {
-
-                },
-                child: const Text('Click'),
-              )
-            ],
-          ),
+        body: Column(
+          children: [
+            Text(
+              questions[_questionIndex],
+            ),
+            ElevatedButton(
+              onPressed: _answerQuestion,
+              child: const Text('Answer 1'),
+            ),
+            ElevatedButton(
+              onPressed: _answerQuestion,
+              child: const Text('Answer 2'),
+            ),
+            ElevatedButton(
+              onPressed: _answerQuestion,
+              child: const Text('Answer 3'),
+            ),
+          ],
         ),
       ),
     );
