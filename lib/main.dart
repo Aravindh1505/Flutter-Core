@@ -22,10 +22,18 @@ class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
 
   var questions = [
-    'What\'s your favorite color?',
-    'What\'s your favorite animal?',
-    'What\'s your favorite actor?',
-    'What\'s your favorite food?',
+    {
+      'questionText': 'What\'s your favorite color?',
+      'answers': ['Red', 'Green', 'Black', 'Blue']
+    },
+    {
+      'questionText': 'What\'s your favorite animal?',
+      'answers': ['Rabbit', 'Dog', 'Cat']
+    },
+    {
+      'questionText': 'What\'s your favorite food?',
+      'answers': ['Idly', 'Dosa', 'Poori', 'Pizza']
+    }
   ];
 
   void _answerQuestion() {
@@ -47,10 +55,10 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Question(questions[_questionIndex]),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
+            Question(questions[_questionIndex]['questionText'] as String),
+            ...(questions[_questionIndex]['answers'] as List<String>)
+                .map((answer) => Answer(_answerQuestion, answer))
+                .toList()
           ],
         ),
       ),
