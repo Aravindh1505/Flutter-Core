@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_core/quiz.dart';
 
-import './question.dart';
-import './answer.dart';
-
-// void main() {
-//   runApp(MyApp());
-// }
+import './result.dart';
+import 'utils/utils.dart';
 
 void main() => runApp(const MyApp());
 
@@ -19,31 +16,17 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final _questions = Utils.questions;
   var _questionIndex = 0;
+  int _totalScore = 0;
 
-  var questions = [
-    {
-      'questionText': 'What\'s your favorite color?',
-      'answers': ['Red', 'Green', 'Black', 'Blue']
-    },
-    {
-      'questionText': 'What\'s your favorite animal?',
-      'answers': ['Rabbit', 'Dog', 'Cat']
-    },
-    {
-      'questionText': 'What\'s your favorite food?',
-      'answers': ['Idly', 'Dosa', 'Poori', 'Pizza']
-    }
-  ];
+  void _answerQuestion(int score) {
+    setState(() {
+      _questionIndex = _questionIndex + 1;
+      _totalScore += score;
+    });
 
-  void _answerQuestion() {
-    if (questions.length - 1 > _questionIndex) {
-      setState(() {
-        _questionIndex = _questionIndex + 1;
-      });
-    }
-
-    print(_questionIndex);
+    print('TotalScore : $_totalScore');
   }
 
   @override
@@ -53,14 +36,12 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Survey'),
         ),
-        body: Column(
-          children: [
-            Question(questions[_questionIndex]['questionText'] as String),
-            ...(questions[_questionIndex]['answers'] as List<String>)
-                .map((answer) => Answer(_answerQuestion, answer))
-                .toList()
-          ],
-        ),
+        body: _questionIndex < _questions.length
+            ? Quiz(
+                questions: _questions,
+                questionIndex: _questionIndex,
+                answerQuestion: _answerQuestion)
+            : Result(_totalScore),
       ),
     );
   }
