@@ -10,7 +10,7 @@ class Utils {
   }
 
   static final List<Transaction> transactions = [
-    Transaction(
+    /*Transaction(
       id: 't1',
       title: 'Mobile',
       amount: 99.90,
@@ -21,6 +21,6 @@ class Utils {
       title: 'Recharge',
       amount: 35.00,
       date: DateTime.now(),
-    )
+    )*/
   ];
 }

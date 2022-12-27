@@ -5,7 +5,22 @@ import 'package:flutter_core/widgets/transaction_list.dart';
 import '../models/transaction.dart';
 import '../utils/utils.dart';
 
-void main() => runApp(MaterialApp(home: MyApp()));
+void main() => runApp(
+      MaterialApp(
+        home: MyApp(),
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+          fontFamily: 'OpenSans',
+          textTheme: const TextTheme(
+            titleLarge: TextStyle(
+              fontFamily: 'OpenSans',
+              fontWeight: FontWeight.w700,
+              fontSize: 16.0,
+            ),
+          ),
+        ),
+      ),
+    );
 
 class MyApp extends StatefulWidget {
   MyApp({super.key});
