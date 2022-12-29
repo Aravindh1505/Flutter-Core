@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_core/widgets/new_transaction.dart';
-import 'package:flutter_core/widgets/transaction_list.dart';
 
+import '../widgets/chart.dart';
+import '../widgets/new_transaction.dart';
+import '../widgets/transaction_list.dart';
 import '../models/transaction.dart';
 import '../utils/utils.dart';
 
@@ -32,6 +33,16 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final List<Transaction> transactions = Utils.transactions;
 
+  List<Transaction> get _recentTransactions {
+    return transactions.where((tx) {
+      return tx.date.isAfter(
+        DateTime.now().subtract(
+          const Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
+
   void showNewTransactionSheet(BuildContext ctx) {
     showModalBottomSheet(
       context: ctx,
@@ -41,7 +52,7 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  void _addTransaction(String title, double amount) {
+  void _addTransaction(String title, double amount, DateTime dateTime) {
     if (title.isEmpty || amount <= 0) {
       return;
     }
@@ -50,11 +61,17 @@ class _MyAppState extends State<MyApp> {
       id: DateTime.now().toString(),
       title: title,
       amount: amount,
-      date: DateTime.now(),
+      date: dateTime,
     );
 
     setState(() {
       transactions.add(newTransaction);
+    });
+  }
+
+  void _deleteTransaction(Transaction transaction) {
+    setState(() {
+      transactions.remove(transaction);
     });
   }
 
@@ -71,12 +88,11 @@ class _MyAppState extends State<MyApp> {
               icon: const Icon(Icons.add))
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            TransactionList(transactions),
-          ],
-        ),
+      body: Column(
+        children: [
+          /*Chart(_recentTransactions),*/
+          TransactionList(transactions, _deleteTransaction),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
