@@ -90,7 +90,7 @@ class _MyAppState extends State<MyApp> {
       ),
       body: Column(
         children: [
-          /*Chart(_recentTransactions),*/
+          Chart(_recentTransactions),
           TransactionList(transactions, _deleteTransaction),
         ],
       ),
