@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import '../widgets/chart.dart';
@@ -77,29 +79,43 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    var appBar = AppBar(
+      title: const Text('Widget Styling'),
+      actions: [
+        IconButton(
+            onPressed: () {
+              showNewTransactionSheet(context);
+            },
+            icon: const Icon(Icons.add))
+      ],
+    );
+
+    var appBarHeight = appBar.preferredSize.height + MediaQuery.of(context).padding.top;
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Widget Styling'),
-        actions: [
-          IconButton(
+      appBar: appBar,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: (MediaQuery.of(context).size.height - appBarHeight) * 0.25,
+              child: Chart(_recentTransactions),
+            ),
+            SizedBox(
+              height: (MediaQuery.of(context).size.height - appBarHeight) * 0.75,
+              child: TransactionList(transactions, _deleteTransaction),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: Platform.isIOS
+          ? Container()
+          : FloatingActionButton(
+              child: const Icon(Icons.add),
               onPressed: () {
                 showNewTransactionSheet(context);
               },
-              icon: const Icon(Icons.add))
-        ],
-      ),
-      body: Column(
-        children: [
-          Chart(_recentTransactions),
-          TransactionList(transactions, _deleteTransaction),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          showNewTransactionSheet(context);
-        },
-      ),
+            ),
     );
   }
 }
