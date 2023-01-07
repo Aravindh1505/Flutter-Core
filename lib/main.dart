@@ -1,12 +1,34 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_core/utils/utils.dart';
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +52,7 @@ class MyApp extends StatelessWidget {
                 height: 20,
               ),
               ElevatedButton(
-                onPressed: () {
-
-                },
+                onPressed: () {},
                 child: const Text('Click'),
               )
             ],
