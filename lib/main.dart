@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../screens/categories_screen.dart';
-import '../utils/utils.dart';
+import '../screens/categories_meals_screen.dart';
+import '../utils/route_names.dart';
+import 'data/dummy_data.dart';
 
 void main() => runApp(const MyApp());
 
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Utils.logger('Main build...');
+    //Utils.logger('Main build...');
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.green,
@@ -31,7 +33,10 @@ class MyApp extends StatelessWidget {
               ),
             ),
       ),
-      home: CategoriesScreen(),
+      routes: {
+        RouteNames.HOME: (ctx) => const CategoriesScreen(),
+        RouteNames.CATEGORIES_MEALS: (ctx) => const CategoryMealsScreen(),
+      },
     );
   }
 }
