@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../screens/categories_screen.dart';
 import '../screens/categories_meals_screen.dart';
 import '../utils/route_names.dart';
-import 'data/dummy_data.dart';
+import '../screens/meal_details_screen.dart';
 
 void main() => runApp(const MyApp());
 
@@ -34,8 +34,9 @@ class MyApp extends StatelessWidget {
             ),
       ),
       routes: {
-        RouteNames.HOME: (ctx) => const CategoriesScreen(),
-        RouteNames.CATEGORIES_MEALS: (ctx) => const CategoryMealsScreen(),
+        RouteNames.HOME: (_) => const CategoriesScreen(),
+        RouteNames.CATEGORIES_MEALS: (_) => const CategoryMealsScreen(),
+        RouteNames.MEAL_DETAIL: (_) => const MealDetailScreen(),
       },
     );
   }
