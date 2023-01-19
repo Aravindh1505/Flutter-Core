@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../screens/categories_screen.dart';
 import '../screens/categories_meals_screen.dart';
-import '../utils/route_names.dart';
 import '../screens/meal_details_screen.dart';
+import '../screens/tabs_screen.dart';
+import '../utils/route_names.dart';
 
 void main() => runApp(const MyApp());
 
@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.green,
-        primaryColor: Colors.greenAccent,
-        accentColor: Colors.pink,
+        primaryColor: Colors.green,
+        accentColor: Colors.white,
         fontFamily: GoogleFonts.lato().fontFamily,
         textTheme: ThemeData.light().textTheme.copyWith(
               titleLarge: TextStyle(
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
             ),
       ),
       routes: {
-        RouteNames.HOME: (_) => const CategoriesScreen(),
+        RouteNames.HOME: (_) => const TabsScreen(),
         RouteNames.CATEGORIES_MEALS: (_) => const CategoryMealsScreen(),
         RouteNames.MEAL_DETAIL: (_) => const MealDetailScreen(),
       },
