@@ -5,6 +5,7 @@ import '../screens/categories_meals_screen.dart';
 import '../screens/meal_details_screen.dart';
 import '../screens/tabs_screen.dart';
 import '../utils/route_names.dart';
+import '../screens/filters_screen.dart';
 
 void main() => runApp(const MyApp());
 
@@ -24,12 +25,12 @@ class MyApp extends StatelessWidget {
               titleLarge: TextStyle(
                 fontFamily: GoogleFonts.lato().fontFamily,
                 fontWeight: FontWeight.w700,
-                fontSize: 20.0,
+                fontSize: 24.0,
               ),
               titleMedium: TextStyle(
                 fontFamily: GoogleFonts.lato().fontFamily,
-                fontWeight: FontWeight.w500,
-                fontSize: 18.0,
+                fontWeight: FontWeight.w600,
+                fontSize: 20.0,
               ),
               bodySmall: TextStyle(
                 fontFamily: GoogleFonts.lato().fontFamily,
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
         RouteNames.HOME: (_) => const TabsScreen(),
         RouteNames.CATEGORIES_MEALS: (_) => const CategoryMealsScreen(),
         RouteNames.MEAL_DETAIL: (_) => const MealDetailScreen(),
+        RouteNames.FILTERS: (_) => const FiltersScreen(),
       },
     );
   }

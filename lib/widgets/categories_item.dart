@@ -32,7 +32,7 @@ class CategoriesItem extends StatelessWidget {
         child: Text(
           category.title,
           textAlign: TextAlign.start,
-          style: Theme.of(context).textTheme.titleLarge,
+          style: Theme.of(context).textTheme.titleMedium,
         ),
       ),
     );
