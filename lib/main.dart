@@ -19,21 +19,21 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
         primaryColor: Colors.green,
-        accentColor: Colors.white,
-        fontFamily: GoogleFonts.lato().fontFamily,
+        accentColor: Colors.pinkAccent,
+        fontFamily: GoogleFonts.abrilFatface().fontFamily,
         textTheme: ThemeData.light().textTheme.copyWith(
               titleLarge: TextStyle(
-                fontFamily: GoogleFonts.lato().fontFamily,
+                fontFamily: GoogleFonts.abrilFatface().fontFamily,
                 fontWeight: FontWeight.w700,
                 fontSize: 24.0,
               ),
               titleMedium: TextStyle(
-                fontFamily: GoogleFonts.lato().fontFamily,
+                fontFamily: GoogleFonts.abrilFatface().fontFamily,
                 fontWeight: FontWeight.w600,
                 fontSize: 20.0,
               ),
               bodySmall: TextStyle(
-                fontFamily: GoogleFonts.lato().fontFamily,
+                fontFamily: GoogleFonts.abrilFatface().fontFamily,
                 fontWeight: FontWeight.w300,
                 fontSize: 16.0,
               ),
