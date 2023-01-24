@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/main_drawer.dart';
+import '../models/meal_filters.dart';
 
 class FiltersScreen extends StatefulWidget {
-  const FiltersScreen({Key? key}) : super(key: key);
+  final MealFilters mealFilters;
+  final Function submit;
+
+  const FiltersScreen(this.mealFilters, this.submit, {super.key});
 
   @override
   State<FiltersScreen> createState() => _FiltersScreenState();
 }
 
 class _FiltersScreenState extends State<FiltersScreen> {
-  var _isGlutenFree = false;
+  /*var _isGlutenFree = false;
   var _isLactoseFree = false;
   var _isVegan = false;
-  var _isVegetarian = false;
+  var _isVegetarian = false;*/
 
   Widget _buildCustomSwitchListTile(String title, String subTitle, bool currentValue, ValueChanged<bool>? newValue) {
     return SwitchListTile(
@@ -24,12 +28,12 @@ class _FiltersScreenState extends State<FiltersScreen> {
     );
   }
 
-  void _submit() {
+  /*void _submit() {
     print('_isGlutenFree : $_isGlutenFree');
     print('_isLactoseFree : $_isLactoseFree');
     print('_isVegan : $_isVegan');
     print('_isVegetarian : $_isVegetarian');
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -53,32 +57,37 @@ class _FiltersScreenState extends State<FiltersScreen> {
             height: 350,
             child: ListView(
               children: [
-                _buildCustomSwitchListTile('Gluten-Free', 'Only includes gluten free meals', _isGlutenFree, (value) {
+                _buildCustomSwitchListTile(
+                    'Gluten-Free', 'Only includes gluten free meals', widget.mealFilters.isGlutenFree, (value) {
                   setState(() {
-                    _isGlutenFree = value;
+                    widget.mealFilters.isGlutenFree = value;
                   });
                 }),
-                _buildCustomSwitchListTile('Lactose-Free', 'Only includes lactose free meals', _isLactoseFree, (value) {
+                _buildCustomSwitchListTile(
+                    'Lactose-Free', 'Only includes lactose free meals', widget.mealFilters.isLactoseFree, (value) {
                   setState(() {
-                    _isLactoseFree = value;
+                    widget.mealFilters.isLactoseFree = value;
                   });
                 }),
-                _buildCustomSwitchListTile('Vegan-Free', 'Only includes vegan free meals', _isVegan, (value) {
-                  setState(() {
-                    _isVegan = value;
-                  });
-                }),
-                _buildCustomSwitchListTile('Vegetarian-Free', 'Only includes vegetarian free meals', _isVegetarian,
+                _buildCustomSwitchListTile('Vegan-Free', 'Only includes vegan free meals', widget.mealFilters.isVegan,
                     (value) {
                   setState(() {
-                    _isVegetarian = value;
+                    widget.mealFilters.isVegan = value;
+                  });
+                }),
+                _buildCustomSwitchListTile(
+                    'Vegetarian-Free', 'Only includes vegetarian free meals', widget.mealFilters.isVegetarian, (value) {
+                  setState(() {
+                    widget.mealFilters.isVegetarian = value;
                   });
                 }),
               ],
             ),
           ),
           ElevatedButton(
-            onPressed: _submit,
+            onPressed: () {
+              widget.submit(widget.mealFilters);
+            },
             child: const Text('Submit'),
           )
         ],
